@@ -5,9 +5,47 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Design tokens test</title>
+  <style>
+    :root {
+      --primaryColor: #000;
+    }
+
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 3rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: var(--primaryColor);
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 1rem 2rem;
+      color: #fff;
+      background-color: var(--primaryColor);
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <h1>Welcome to the Bari</h1>
   <h2>The best destination for work and leisure</h2>
+  <button>Read more</button>
 </body>
+<script>
+
+  fetch('tokens.json')
+    .then((response) => response.json())
+    .then((json) => {
+      const primaryColor = json.global.colors.primary.value;
+      const root = document.documentElement;
+      root.style.setProperty('--primaryColor', primaryColor);
+    });
+
+</script>
 </html>
